@@ -1,0 +1,129 @@
+Sources
+https://sql.sh/sgbd
+https://laurent-audibert.developpez.com/Cours-BD/?page=introduction-bases-de-donnees#L1-1
+http://blog.paumard.org/cours/sql/chap03-organisation-db-schema-table.html
+https://fr.wikipedia.org/wiki/Cl%C3%A9_%C3%A9trang%C3%A8re
+https://openclassrooms.com/fr/courses/4055451-modelisez-et-implementez-une-base-de-donnees-relationnelle-avec-uml/4457581-comprendre-les-cles-primaires
+https://www.1keydata.com/fr/sql/sql-constraint.php
+https://www.supinfo.com/articles/single/3637-operations-crud
+https://sql.sh/1548-mysql-innodb-myisam
+https://www.supinfo.com/articles/single/3861-sql-serveur-pourquoi-comment-creer-vues
+
+Base de données
+
+un ensemble structuré et organisé permettant le stockage de grandes quantités d'informations afin d'en faciliter l'exploitation (ajout, mise à jour, recherche de données).
+
+
+SGBDR
+
+Un Système de Gestion de Base de Données (SGBD) est un logiciel qui permet de stocker des informations dans une base de données. Un tel système permet de lire, écrire, modifier, trier, transformer ou même imprimer les données qui sont contenus dans la base de données.
+
+
+table,colonne,ligne/enregistrement
+
+une table est un ensemble de données organisées sous forme d'un tableau où les colonnes correspondent à des catégories d'information et les lignes à des enregistrements, également appelés entrées.
+Une table est une structure dans laquelle on peut enregistrer des données. Une table est un ensemble de lignes, chaque ligne est un ensemble de colonnes. À chaque colonne est associée un type de donnée : entier, chaîne de caractères, date ou type binaire. Une table peut comporter zéro ligne, en revanche elle doit toujours comporter au moins une colonne pour exister.
+
+
+Une clé primaire
+
+Elle permet d'indentifier de manière unique et certaine les lignes d'une table.
+
+
+Une clé étrangère
+
+Une clé étrangère, dans une base de données relationnelle, est une contrainte qui garantit l'intégrité référentielle entre deux tables.
+Elle permet, pour les valeurs de la ou les colonnes, de faire référence à des valeurs préexitantes dans une ou plusieurs colonnes d'une autre table. Ce mécanisme s'apelle intégrité référentielle.
+
+
+Une contrainte
+
+une contrainte de table porte sur une ou plusieurs colonnes et permet l'unicité, la validation et l'intégrité référentielle
+
+
+Un index
+
+simplifie et accélère les opérations de recherche, de tri, de jointure ou d'agrégation effectuées par le SGBD.
+
+
+CRUD
+
+CRUD est un sigle informatique qui se définit en anglais par Create Read Update et Delete qui respectivement signifie en français Créer, Lire, Mettre à jour et Supprimer. Les CRUD nous permettent une manipulation basique des données d’une base de données, ainsi donc nous pourrons enregistrer des données, lire des données, modifier des données et supprimer des données à partir d’une base de données.
+
+
+Une jointure
+
+Les jointures en SQL permettent d’associer plusieurs tables dans une même requête. Cela permet d’exploiter la puissance des bases de données relationnelles pour obtenir des résultats qui combinent les données de plusieurs tables de manière efficace.
+
+
+transaction
+
+Une transaction assemble plusieurs étapes en une seule opération tout-ou-rien. Les états intermédiaires entre les étapes ne sont pas visibles par les transactions concurrentes. De plus, si un échec survient qui empêche le succès de la transaction, alors aucune des étapes n'affecte la base de données.
+
+
+commit
+
+valide la transaction en cours. On peut désormais voir les modifications réalisées au cours de la transaction. De plus, leur persistance est garantie en cas d'arrêt brutal du serveur.
+
+
+rollback
+
+annule la transaction en cours et toutes les modifications effectuées lors de cette transaction.
+
+
+exemple de transaction
+
+Envoyez un chapitre écrit sur le site par un utilisateur enregistré vers la base de données.
+
+
+sous-requête
+
+Dans le langage SQL une sous-requête (aussi appelé “requête imbriquée” ou “requête en cascade”) consiste à exécuter une requête à l’intérieur d’une autre requête. Une requête imbriquée est souvent utilisée au sein d’une clause WHERE ou de HAVING pou remplacer une ou plusieurs constante.
+
+
+vue
+
+Une vue est une liste de colonnes ou une série d'enregistrements extraits d'une ou de plusieurs tables existantes de la base de données relationnelle, ou comme une combinaison d'une ou plusieurs vues et d'une ou de plusieurs tables de la base de données relationnelle.
+Une vue est une table virtuelle, c'est-à-dire dont les données ne sont pas stockées dans une table de la base de données, et dans laquelle il est possible de rassembler des informations provenant de plusieurs tables.
+
+
+MyISAM
+
+Avantages
+
+Système de stockage par défaut de MySQL. Ce type de stockage est le plus ancien disponible avec MySQL
+Très rapide pour effectuer des requêtes SELECT ou INSERT
+Supporte l’indexation plein texte (cf. index full text). Offre de bien meilleure performance lors d’une recherche sur des champs de textes
+Administration plus simple
+Possibilité de verrouiller au niveau d’une table (cf. table lock)
+Plus souple au niveau de l’intégrité des données (mais ça peut avoir son revers de la médaille …)
+
+Inconvénients
+
+La souplesse de MyISAM entraîne quelques points négatifs lorsqu’il s’agit de garder une bonne intégrité des données, comme le montre les points ci-dessous:
+
+Pas de transactions
+Pas de clés étrangères
+Plus difficile de récupérer après un crash. L’intégrité des données peut facilement être compromise
+
+InnoDB
+
+Avantages
+
+Les principaux avantages d’utiliser InnoDB concerne la possibilité de bien gérer l’intégrité des données, même lors d’un crash du serveur.
+
+Gère les transactions (ensemble de requêtes regroupées) tel que BEGIN, COMMIT, ROLLBACK …
+Gère les clés étrangères et les contraintes d’intégrité
+Support de ACID pour s’assurer que tous les enregistrements sont réussi ou échoué. Risque d’erreur impossible, même lors d’une panne
+Système de récupération lors d’un crash grâce à un système de relecture des logs.
+
+Inconvénients
+
+Toutefois, l’intégrité des données complique l’administration d’une base de données.
+
+Plus strict concernant l’intégrité des données
+Ne supporte pas l’indexation plein texte (cf. index full text)
+Administration un peu plus complexe
+Moteur de stockage plus imposant. Il demande plus de ressources et est plus lent
+Possibilité de verrouiller au niveau d’une ligne (cf. row lock) pour insérer ou mettre à jour un enregistrement
+Intéressant de noter que c’est plus récent, même si ce n’est pas forcément un inconvénient
